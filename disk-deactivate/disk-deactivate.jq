@@ -4,7 +4,7 @@ def remove:
     "if type zpool >/dev/null; then zpool destroy -f \(.label); zpool labelclear -f \(.label); fi"
   elif .fstype == "LVM2_member" then
     [
-      "vg=$(pvs \(.path) --noheadings --options vg_name | grep -o '[a-zA-Z0-9-]*')",
+      "vg=$(pvs \(.path) --noheadings --options vg_name | grep -o '[a-zA-Z0-9_-]*')",
       "vgchange -a n \"$vg\"",
       "vgremove -f \"$vg\""
     ]
